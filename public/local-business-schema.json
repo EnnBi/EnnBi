@@ -1,0 +1,125 @@
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://www.ennbi.com",
+  "name": "EnnBi",
+  "alternateName": [
+    "EnnBi Software Solutions",
+    "EnnBi Kashmir",
+    "EnnBi Srinagar"
+  ],
+  "description": "Leading software development company in Kashmir, Srinagar providing custom software development, web applications, mobile apps, cloud solutions, and AI/ML integration services across India.",
+  "url": "https://www.ennbi.com",
+  "logo": "https://www.ennbi.com/logo.png",
+  "image": "https://www.ennbi.com/og-image.jpg",
+  "telephone": "+91-7006016082",
+  "email": "hr@ennbi.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Habbak Naseem Bagh Hazratbal",
+    "addressLocality": "Srinagar",
+    "addressRegion": "Jammu and Kashmir",
+    "postalCode": "190006",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "34.0837",
+    "longitude": "74.7973"
+  },
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "Kashmir"
+    },
+    {
+      "@type": "Place", 
+      "name": "Srinagar"
+    },
+    {
+      "@type": "Place",
+      "name": "Jammu and Kashmir"
+    },
+    {
+      "@type": "Place",
+      "name": "India"
+    }
+  ],
+  "serviceArea": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": "34.0837",
+      "longitude": "74.7973"
+    },
+    "geoRadius": "50000"
+  },
+  "priceRange": "$$",
+  "category": [
+    "Software Development Company",
+    "IT Services",
+    "Web Development",
+    "Mobile App Development",
+    "Technology Solutions"
+  ],
+  "keywords": [
+    "software development Kashmir",
+    "web development Srinagar", 
+    "mobile app development Kashmir",
+    "IT company Kashmir",
+    "software solutions India",
+    "custom software development",
+    "cloud solutions Kashmir"
+  ],
+  "foundingDate": "2022",
+  "numberOfEmployees": "10-50",
+  "paymentAccepted": ["Cash", "Credit Card", "Bank Transfer"],
+  "currenciesAccepted": "INR",
+  "openingHours": "Mo-Fr 09:00-18:00",
+  "sameAs": [
+    "https://www.instagram.com/ennbi_softwares",
+    "https://linkedin.com/in/ennbi-softwares-3b737a363"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Software Development Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Custom Software Development",
+          "description": "Tailored software solutions for businesses in Kashmir and across India",
+          "areaServed": "India"
+        }
+      },
+      {
+        "@type": "Offer", 
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Web Development",
+          "description": "Professional web development services in Srinagar, Kashmir",
+          "areaServed": "Kashmir"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service", 
+          "name": "Mobile App Development",
+          "description": "Native and cross-platform mobile app development in Kashmir",
+          "areaServed": "India"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Cloud Solutions",
+          "description": "Scalable cloud infrastructure and solutions across India",
+          "areaServed": "India"
+        }
+      }
+    ]
+  }
+}
