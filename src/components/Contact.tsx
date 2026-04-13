@@ -18,7 +18,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <Section id="contact" eyebrow="// CH.07 · START A PROJECT" title="Tell us what you're building." variant="bordered">
+    <Section id="contact" eyebrow="// CH.07 · LET'S CHAT" title="Tell us what you're building." variant="bordered">
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.25fr] gap-10 lg:gap-16">
         {/* Left: info */}
         <div className="flex flex-col gap-8">

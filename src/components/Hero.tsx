@@ -55,7 +55,7 @@ const Hero: React.FC = () => {
 
           <div className="mt-10 flex flex-wrap gap-4">
             <Button as="a" href="#contact" variant="primary" size="lg">
-              Start a Project
+              Let's Chat
             </Button>
             <Button as="a" href="#work" variant="secondary" size="lg">
               Selected Work →

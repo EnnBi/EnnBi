@@ -78,7 +78,7 @@ const Navbar: React.FC = () => {
             )
           )}
           <Button as="a" href="#contact" variant="primary" size="sm">
-            Start a Project
+            Let's Chat
           </Button>
         </div>
 
@@ -118,7 +118,7 @@ const Navbar: React.FC = () => {
               )
             )}
             <Button as="a" href="#contact" variant="primary" size="sm" onClick={() => setOpen(false)}>
-              Start a Project
+              Let's Chat
             </Button>
           </div>
         </div>
