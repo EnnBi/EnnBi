@@ -1,102 +1,90 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
+import { Button, Input, Eyebrow } from './ui';
 
 const Login: React.FC = () => {
-  const [credentials, setCredentials] = useState({
-    email: '',
-    password: '',
-  });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setError(''); // Clear previous errors
-    
-    // Mock validation - in production, this would be a real API call
-    if (!credentials.email || !credentials.password) {
-      setError('Please fill in all fields');
-      return;
-    }
-    
-    // Show error for any login attempt (since this is a mock)
-    setError('Incorrect email or password. Please try again.');
+    setError('');
+    setLoading(true);
+
+    // Placeholder authentication — replace with real backend in follow-up.
+    window.setTimeout(() => {
+      setLoading(false);
+      if (!email || !password) {
+        setError('Please enter your credentials.');
+        return;
+      }
+      // Accept anything for the stub
+      navigate('/');
+    }, 400);
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Employee Login
-        </h2>
-      </div>
+    <div className="min-h-screen bg-ink-950 text-ink-200 font-plex flex flex-col">
+      <Navbar />
+      <main className="flex-1 flex items-center justify-center px-6 py-24">
+        <div className="w-full max-w-md">
+          <div className="mb-10">
+            <Eyebrow withDot className="mb-6">// EMPLOYEE CORNER · RESTRICTED</Eyebrow>
+            <h1 className="font-brutal uppercase text-[2.5rem] md:text-[3.25rem] leading-[0.95] tracking-[-0.02em] text-ink-50">
+              Sign in.
+            </h1>
+            <p className="mt-4 font-plex text-ink-300">
+              Internal tooling for the EnnBi team. Not for public access.
+            </p>
+          </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            {error && (
-              <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded relative">
-                <span className="block sm:inline">{error}</span>
-              </div>
-            )}
-
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email address
-              </label>
-              <div className="mt-1">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                  value={credentials.email}
-                  onChange={(e) => setCredentials({ ...credentials, email: e.target.value })}
-                />
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                Password
-              </label>
-              <div className="mt-1">
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                  value={credentials.password}
-                  onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
-                />
-              </div>
-            </div>
-
-            <div>
-              <button
-                type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-              >
-                Sign in
-              </button>
-            </div>
+          <form
+            onSubmit={handleSubmit}
+            className="border border-ink-700 bg-ink-900 p-6 md:p-8 rounded-xs space-y-5"
+          >
+            <Input
+              label="Email"
+              type="email"
+              name="email"
+              placeholder="you@ennbi.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              autoComplete="email"
+              required
+            />
+            <Input
+              label="Password"
+              type="password"
+              name="password"
+              placeholder="••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              autoComplete="current-password"
+              error={error || undefined}
+              required
+            />
+            <Button type="submit" variant="primary" size="lg" className="w-full" disabled={loading}>
+              {loading ? 'Signing in…' : 'Sign in →'}
+            </Button>
+            <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-500 text-center pt-2">
+              // Forgot password? Ping ops in Slack.
+            </p>
           </form>
 
-          <div className="mt-6">
-            <Link
+          <div className="mt-8 text-center">
+            <RouterLink
               to="/"
-              className="text-blue-600 hover:text-blue-800 font-medium flex items-center justify-center"
+              className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-400 hover:text-mint-500 transition-colors"
             >
-              ← Return to Home
-            </Link>
+              ← Back to site
+            </RouterLink>
           </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 };

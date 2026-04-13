@@ -1,305 +1,97 @@
 import React, { useState } from 'react';
-import { MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
+import { Section, Button, Input, Textarea, Eyebrow } from './ui';
 
-interface FormData {
-  name: string;
-  email: string;
-  phone: string;
-  message: string;
-  projectType: string;
-  budget: string;
-  timeline: string;
-}
+const contactInfo = [
+  { icon: <Mail size={16} />, label: 'Email', value: 'hr@ennbi.com', href: 'mailto:hr@ennbi.com' },
+  { icon: <Phone size={16} />, label: 'Phone', value: '+91 7889449921', href: 'tel:+917889449921' },
+  { icon: <MapPin size={16} />, label: 'Address', value: 'Habbak Naseem Bagh, Hazratbal\nSrinagar, J&K — 190006' },
+];
 
 const Contact: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-    projectType: '',
-    budget: '',
-    timeline: '',
-  });
-  const [errors, setErrors] = useState<Partial<FormData>>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [submitError, setSubmitError] = useState('');
+  const [sent, setSent] = useState(false);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-
-    if (errors[name as keyof FormData]) {
-      setErrors((prev) => ({ ...prev, [name]: undefined }));
-    }
-  };
-
-  const validate = (): boolean => {
-    const newErrors: Partial<FormData> = {};
-    if (!formData.name.trim()) newErrors.name = 'Name is required';
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)
-    ) {
-      newErrors.email = 'Invalid email address';
-    }
-    if (!formData.phone.trim()) newErrors.phone = 'Phone is required';
-    if (!formData.message.trim()) newErrors.message = 'Message is required';
-    if (!formData.projectType) newErrors.projectType = 'Project type is required';
-    if (!formData.timeline) newErrors.timeline = 'Timeline is required';
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitError('');
-
-    if (!validate()) {
-      setSubmitError('Please fill in all required fields correctly.');
-      return;
-    }
-
-    setIsSubmitting(true);
-    try {
-      const response = await fetch('https://formspree.io/f/xzzrqaly', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        setSubmitSuccess(true);
-        setSubmitError('');
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          message: '',
-          projectType: '',
-          budget: '',
-          timeline: '',
-        });
-        setTimeout(() => setSubmitSuccess(false), 5000);
-      } else {
-        const errorData = await response.json().catch(() => ({}));
-        setSubmitError(errorData.error || 'Failed to submit. Please try again later.');
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setSubmitError('Network error. Please check your connection and try again.');
-    } finally {
-      setIsSubmitting(false);
-    }
+    // Placeholder — wire up to a real backend (Formspree, Resend, etc.) in a follow-up.
+    setSent(true);
   };
 
   return (
-      <div id="contact" className="max-w-6xl mx-auto px-4 py-10 space-y-10">
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white shadow-2xl rounded-2xl p-8">
-        <div className="space-y-6 text-gray-800">
-          <h2 className="text-3xl font-bold text-gray-900">Contact Information</h2>
-          <p>We're here to help. Reach out to us using the information below or send a message using the form.</p>
-
-          <div>
-            <h3 className="font-semibold text-lg">Address</h3>
-            <p>Habak Naseem Bagh Hazratbal<br />Srinagar, J&K 190006</p>
-            <a
-              href="https://www.google.com/maps?q=34.143656659922925,74.83767531401399"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:text-blue-800"
-              title="View on Google Maps"
-            >
-              <MapPin size={20} />
-            </a>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-lg">Phone</h3>
-            <p>+91 7889449921</p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-lg">Email</h3>
-            <p>hr@ennbi.com</p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-lg">Office Hours</h3>
-            <div className="flex items-center gap-2">
-              <p>Monday to Friday: 10:00 AM – 8:00 PM</p>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">Discuss Your Project</h2>
-          <p className="text-gray-600 mb-6">
-            Tell us about your project, and we'll help bring your vision to life.
+    <Section id="contact" eyebrow="// CH.07 · START A PROJECT" title="Tell us what you're building." variant="bordered">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.25fr] gap-10 lg:gap-16">
+        {/* Left: info */}
+        <div className="flex flex-col gap-8">
+          <p className="font-plex text-lg text-ink-300 leading-[1.55] max-w-md">
+            A short note goes a long way. Tell us what you&apos;re building, roughly what
+            you need, and we&apos;ll come back within two working days with a honest take
+            on scope, timeline, and fit.
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {submitSuccess && (
-              <div className="bg-green-100 text-green-800 p-4 rounded-lg">
-                <p className="font-medium">Thank you for your message!</p>
-                <p>We have received your inquiry and will get back to you shortly.</p>
+          <div className="border-t border-ink-700 pt-8 space-y-6">
+            {contactInfo.map((c) => (
+              <div key={c.label} className="flex items-start gap-4">
+                <div className="mt-1 text-mint-500 flex-shrink-0">{c.icon}</div>
+                <div className="flex flex-col gap-1 min-w-0">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-500">
+                    {c.label}
+                  </span>
+                  {c.href ? (
+                    <a
+                      href={c.href}
+                      className="font-plex text-ink-100 hover:text-mint-500 transition-colors text-base break-all"
+                    >
+                      {c.value}
+                    </a>
+                  ) : (
+                    <span className="font-plex text-ink-100 whitespace-pre-line text-base">
+                      {c.value}
+                    </span>
+                  )}
+                </div>
               </div>
-            )}
+            ))}
+          </div>
 
-            {submitError && (
-              <div className="bg-red-100 text-red-800 p-4 rounded-lg">
-                <p className="font-medium">Error</p>
-                <p>{submitError}</p>
-              </div>
-            )}
-
-            <div>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                className={`w-full p-3 border rounded text-black focus:outline-none focus:ring-2 ${
-                  errors.name ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-blue-300'
-                }`}
-                placeholder="Full Name *"
-              />
-              {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
-            </div>
-
-            <div>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className={`w-full p-3 border rounded text-black focus:outline-none focus:ring-2 ${
-                  errors.email ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-blue-300'
-                }`}
-                placeholder="Email Address *"
-              />
-              {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
-            </div>
-
-            <div>
-              <input
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                required
-                className={`w-full p-3 border rounded text-black focus:outline-none focus:ring-2 ${
-                  errors.phone ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-blue-300'
-                }`}
-                placeholder="Phone Number *"
-              />
-              {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
-            </div>
-
-            <div>
-              <select
-                name="projectType"
-                value={formData.projectType}
-                onChange={handleChange}
-                required
-                className={`w-full p-3 border rounded text-black focus:outline-none focus:ring-2 ${
-                  errors.projectType ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-blue-300'
-                }`}
-              >
-                <option value="">Select Project Type *</option>
-                <option value="website">Website Development</option>
-                <option value="mobile">Mobile App Development</option>
-                <option value="ecommerce">E-Commerce Solution</option>
-                <option value="custom">Custom Software</option>
-                <option value="ai">AI/ML Solution</option>
-                <option value="other">Other</option>
-              </select>
-              {errors.projectType && <p className="text-red-500 text-sm mt-1">{errors.projectType}</p>}
-            </div>
-            {/* <select
-              name="budget"
-              value={formData.budget}
-              onChange={handleChange}
-              required
-              className={`w-full p-3 border rounded text-black focus:outline-none focus:ring-2 ${
-                errors.budget ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-blue-300'
-              }`}
-            >
-              <option value="">Select Budget Range *</option>
-              <option value="5k-50k">₹5,000 - ₹50,000</option>
-              <option value="50k-100k">₹50,000 - ₹100,000</option>
-              <option value="100k+">₹100,000+</option>
-            </select> */}
-            <div>
-              <select
-                name="timeline"
-                value={formData.timeline}
-                onChange={handleChange}
-                required
-                className={`w-full p-3 border rounded text-black focus:outline-none focus:ring-2 ${
-                  errors.timeline ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-blue-300'
-                }`}
-              >
-                <option value="">Select Timeline *</option>
-                <option value="1-6months">1-6 Months</option>
-                <option value="6months+">6-12 Months</option>
-                <option value="1+years">1+Years</option>
-              </select>
-              {errors.timeline && <p className="text-red-500 text-sm mt-1">{errors.timeline}</p>}
-            </div>
-
-            <div>
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-                rows={5}
-                className={`w-full p-3 border rounded text-black focus:outline-none focus:ring-2 ${
-                  errors.message ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-blue-300'
-                }`}
-                placeholder="Tell us about your project requirements *"
-              />
-              {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
-            </div>
-
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded hover:bg-blue-700 disabled:opacity-50"
-            >
-              {isSubmitting ? 'Sending...' : 'Send Message'}
-            </button>
-          </form>
+          <Eyebrow withDot>RESPONSE WINDOW · 48H · MON–FRI</Eyebrow>
         </div>
-      </div>
 
-      <div className="mt-6">
-        <h3 className="font-semibold text-lg mb-2">Our Location</h3>
-        <iframe
-          title="ENNBI Location"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3302.1018043943513!2d74.83521661073875!3d34.143737473010525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e1844fb09e56f1%3A0x533561aabfa52c80!2s4RVQ%2BF4V%2C%20Srinagar!5e0!3m2!1sen!2sin!4v1747992942619!5m2!1sen!2sin"
-          width="100%"
-          height="300"
-          style={{ border: 0 }}
-          allowFullScreen
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          className="rounded-lg shadow-md"
-        />
+        {/* Right: form */}
+        <form onSubmit={onSubmit} className="border border-ink-700 bg-ink-900 p-6 md:p-8 rounded-xs">
+          {sent ? (
+            <div className="flex flex-col gap-4 py-8 text-center">
+              <span className="font-brutal uppercase text-4xl text-mint-500">Sent.</span>
+              <p className="font-plex text-ink-300">
+                Thanks — we&apos;ll be in touch within two working days.
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <Input label="Name" name="name" placeholder="Your name" required />
+              <Input label="Email" name="email" type="email" placeholder="you@company.com" required />
+              <Input label="Company" name="company" placeholder="(optional)" className="md:col-span-2" />
+              <div className="md:col-span-2">
+                <Textarea
+                  label="Project brief"
+                  name="message"
+                  placeholder="What are you building? Who's it for? Rough timeline?"
+                  rows={5}
+                  required
+                />
+              </div>
+              <div className="md:col-span-2 flex flex-wrap items-center justify-between gap-4 pt-2">
+                <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-500">
+                  // we read every message
+                </p>
+                <Button type="submit" variant="primary" size="lg">
+                  Send →
+                </Button>
+              </div>
+            </div>
+          )}
+        </form>
       </div>
-    </div>
+    </Section>
   );
 };
 

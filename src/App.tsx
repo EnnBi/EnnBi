@@ -1,19 +1,17 @@
-import React, { Suspense, useEffect, lazy } from 'react';
+import React, { Suspense, lazy, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
-  Route
+  Route,
 } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import About from './components/About';
 import Services from './components/Services';
-import Technologies from './components/Technologies';
-import WhyChooseUs from './components/WhyChooseUs';
-import Portfolio from './components/Portfolio';
+import Stack from './components/Stack';
+import Work from './components/Work';
+import Process from './components/Process';
 import Testimonials from './components/Testimonials';
-import Newsletter from './components/Newsletter';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Blog from './components/Blog';
@@ -28,13 +26,11 @@ const Home = () => (
   <>
     <Navbar />
     <Hero />
-    <About />
     <Services />
-    <Technologies />
-    <WhyChooseUs />
-    <Portfolio />
+    <Stack />
+    <Work />
+    <Process />
     <Testimonials />
-    <Newsletter />
     <Contact />
     <Footer />
   </>
@@ -42,35 +38,24 @@ const Home = () => (
 
 function App() {
   useEffect(() => {
-    document.title = 'Ennbi Softwares - Transform Your Business With Technology';
+    document.title = 'EnnBi — Custom Software & Technology Solutions';
 
-    const anchorLinks = document.querySelectorAll('a[href^="#"]');
-    anchorLinks.forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href') as string);
-        if (target) {
-          window.scrollTo({
-            top: (target as HTMLElement).offsetTop,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-in');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    const animatedElements = document.querySelectorAll('.animate-on-scroll');
-    animatedElements.forEach(el => observer.observe(el));
-
-    return () => animatedElements.forEach(el => observer.unobserve(el));
+    // Smooth anchor scrolling (accounting for sticky navbar)
+    const handler = (e: Event) => {
+      const target = e.target as HTMLElement | null;
+      const anchor = target?.closest('a[href^="#"]') as HTMLAnchorElement | null;
+      if (!anchor) return;
+      const hash = anchor.getAttribute('href');
+      if (!hash || hash === '#') return;
+      const el = document.querySelector(hash);
+      if (!el) return;
+      e.preventDefault();
+      const offset = 80;
+      const top = (el as HTMLElement).getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    };
+    document.addEventListener('click', handler);
+    return () => document.removeEventListener('click', handler);
   }, []);
 
   return (
