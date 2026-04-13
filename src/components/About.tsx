@@ -42,7 +42,7 @@ const About: React.FC = () => {
             </p>
 
             <p className="text-gray-700 mb-6">
-              Established in 2022, EnnBi is a trailblazing technology firm based in <strong>Srinagar, Kashmir</strong>, dedicated to crafting intelligent, scalable, and future-ready software solutions. As a leading <strong>software development company</strong>, we serve clients globally. With a blend of creativity and technical mastery, we help businesses of all sizes unlock growth and streamline operations.
+              Established in 2022, EnnBi is a <strong>global software development company</strong> dedicated to crafting intelligent, scalable, and future-ready software solutions for clients worldwide. Headquartered in Srinagar, India, we partner with businesses across the US, UK, Europe, the Middle East, and Asia. With a blend of creativity and technical mastery, we help companies of all sizes unlock growth and streamline operations.
             </p>
 
             <p className="text-gray-700 mb-6">
