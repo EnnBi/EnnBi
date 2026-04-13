@@ -4,10 +4,16 @@ export default {
   theme: {
     extend: {
       fontFamily: {
+        // Legacy — removed in Phase 2 cleanup
         sans: ['Poppins', 'sans-serif'],
         display: ['Space Grotesk', 'sans-serif'],
+        // Brutalist design system
+        brutal: ['"Archivo Black"', 'Impact', 'sans-serif'],
+        plex: ['"IBM Plex Sans"', 'system-ui', 'sans-serif'],
+        mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
       },
       colors: {
+        // Legacy palettes — removed in Phase 2 cleanup
         primary: {
           50: '#f0f9ff',
           100: '#e0f2fe',
@@ -56,6 +62,50 @@ export default {
           800: '#801a1a',
           900: '#4d1010',
         },
+        // Brutalist design system — mapped to tokens.css custom properties
+        ink: {
+          950: 'var(--ink-950)',
+          900: 'var(--ink-900)',
+          800: 'var(--ink-800)',
+          700: 'var(--ink-700)',
+          600: 'var(--ink-600)',
+          500: 'var(--ink-500)',
+          400: 'var(--ink-400)',
+          300: 'var(--ink-300)',
+          200: 'var(--ink-200)',
+          100: 'var(--ink-100)',
+          50:  'var(--ink-50)',
+        },
+        mint: {
+          900: 'var(--accent-900)',
+          700: 'var(--accent-700)',
+          500: 'var(--accent-500)',
+          300: 'var(--accent-300)',
+          100: 'var(--accent-100)',
+        },
+        signal: {
+          success: 'var(--success)',
+          warning: 'var(--warning)',
+          danger:  'var(--danger)',
+          info:    'var(--info)',
+        },
+      },
+      borderRadius: {
+        xs: 'var(--radius-xs)',
+      },
+      boxShadow: {
+        'offset':        'var(--shadow-offset)',
+        'offset-hover':  'var(--shadow-offset-hover)',
+        'offset-active': 'none',
+      },
+      transitionTimingFunction: {
+        'brutal':    'var(--ease-out)',
+        'brutal-io': 'var(--ease-in-out)',
+      },
+      transitionDuration: {
+        fast: '120ms',
+        base: '200ms',
+        slow: '350ms',
       },
       animation: {
         'scroll-down': 'scroll-down 1.5s ease-in-out infinite',
