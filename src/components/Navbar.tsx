@@ -4,10 +4,10 @@ import { Menu, X } from 'lucide-react';
 import { Button } from './ui';
 
 const links = [
-  { label: 'Work', href: '#work' },
-  { label: 'Services', href: '#services' },
-  { label: 'Stack', href: '#stack' },
-  { label: 'Process', href: '#process' },
+  { label: 'Work', href: '/#work' },
+  { label: 'Services', href: '/#services' },
+  { label: 'Stack', href: '/#stack' },
+  { label: 'Process', href: '/#process' },
 ];
 
 const LOGO_URL = 'https://i.postimg.cc/cK79ds0J/Whats-App-Image-2025-05-21-at-9-23-13-PM.png';
@@ -77,7 +77,7 @@ const Navbar: React.FC = () => {
               </a>
             )
           )}
-          <Button as="a" href="#contact" variant="primary" size="sm">
+          <Button as="a" href="/#contact" variant="primary" size="sm">
             Let's Chat
           </Button>
         </div>
@@ -117,7 +117,7 @@ const Navbar: React.FC = () => {
                 </a>
               )
             )}
-            <Button as="a" href="#contact" variant="primary" size="sm" onClick={() => setOpen(false)}>
+            <Button as="a" href="/#contact" variant="primary" size="sm" onClick={() => setOpen(false)}>
               Let's Chat
             </Button>
           </div>

@@ -5,12 +5,12 @@ import { Eyebrow } from './ui';
 
 const nav = {
   navigate: [
-    { label: 'Home', href: '#home' },
-    { label: 'Work', href: '#work' },
-    { label: 'Services', href: '#services' },
-    { label: 'Stack', href: '#stack' },
-    { label: 'Process', href: '#process' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Home', href: '/#home' },
+    { label: 'Work', href: '/#work' },
+    { label: 'Services', href: '/#services' },
+    { label: 'Stack', href: '/#stack' },
+    { label: 'Process', href: '/#process' },
+    { label: 'Contact', href: '/#contact' },
   ],
   services: [
     'Custom Software',

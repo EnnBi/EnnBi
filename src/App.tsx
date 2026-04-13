@@ -3,6 +3,8 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
+  useLocation,
+  useNavigate,
 } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
@@ -21,44 +23,98 @@ import './index.css';
 
 const Styleguide = lazy(() => import('./components/Styleguide'));
 
-const Home = () => (
-  <>
-    <Navbar />
-    <Hero />
-    <Services />
-    <Stack />
-    <Work />
-    <Process />
-    <Testimonials />
-    <Contact />
-    <Footer />
-  </>
-);
+const NAV_OFFSET = 80;
+
+const scrollToId = (id: string) => {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const top = el.getBoundingClientRect().top + window.scrollY - NAV_OFFSET;
+  window.scrollTo({ top, behavior: 'smooth' });
+};
+
+const Home: React.FC = () => {
+  const location = useLocation();
+
+  // Scroll to anchor when arriving from another route (e.g., navbar link from /technologies)
+  useEffect(() => {
+    const state = location.state as { scrollTo?: string } | null;
+    if (state?.scrollTo) {
+      // wait for the page to mount before measuring
+      window.setTimeout(() => scrollToId(state.scrollTo!), 50);
+    }
+  }, [location.state]);
+
+  return (
+    <>
+      <Navbar />
+      <Hero />
+      <Services />
+      <Stack />
+      <Work />
+      <Process />
+      <Testimonials />
+      <Contact />
+      <Footer />
+    </>
+  );
+};
+
+/**
+ * Global click handler that intercepts anchor clicks:
+ * - "#x"   → smooth-scroll to #x on current page
+ * - "/#x"  → if already on /, smooth-scroll; otherwise router-navigate
+ *            to / and scroll after mount via Home's useEffect
+ */
+const NavigationHandler: React.FC = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      // Ignore clicks with modifier keys (open in new tab etc.)
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+
+      const target = e.target as HTMLElement | null;
+      const anchor = target?.closest('a[href]') as HTMLAnchorElement | null;
+      if (!anchor) return;
+      const href = anchor.getAttribute('href') || '';
+
+      // "/#section" — go to home and scroll
+      if (href.startsWith('/#') && href.length > 2) {
+        const id = href.slice(2);
+        e.preventDefault();
+        if (location.pathname === '/') {
+          scrollToId(id);
+        } else {
+          navigate('/', { state: { scrollTo: id } });
+        }
+        return;
+      }
+
+      // "#section" — same-page scroll
+      if (href.startsWith('#') && href.length > 1) {
+        const id = href.slice(1);
+        if (document.getElementById(id)) {
+          e.preventDefault();
+          scrollToId(id);
+        }
+      }
+    };
+    document.addEventListener('click', handler);
+    return () => document.removeEventListener('click', handler);
+  }, [navigate, location.pathname]);
+
+  return null;
+};
 
 function App() {
   useEffect(() => {
     document.title = 'EnnBi — Custom Software & Technology Solutions';
-
-    // Smooth anchor scrolling (accounting for sticky navbar)
-    const handler = (e: Event) => {
-      const target = e.target as HTMLElement | null;
-      const anchor = target?.closest('a[href^="#"]') as HTMLAnchorElement | null;
-      if (!anchor) return;
-      const hash = anchor.getAttribute('href');
-      if (!hash || hash === '#') return;
-      const el = document.querySelector(hash);
-      if (!el) return;
-      e.preventDefault();
-      const offset = 80;
-      const top = (el as HTMLElement).getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({ top, behavior: 'smooth' });
-    };
-    document.addEventListener('click', handler);
-    return () => document.removeEventListener('click', handler);
   }, []);
 
   return (
     <Router>
+      <NavigationHandler />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
