@@ -23,7 +23,7 @@ const Work: React.FC = () => {
               </span>
             </div>
             <div>
-              <h3 className="font-brutal uppercase text-2xl leading-[1.1] tracking-[-0.015em] text-ink-50">
+              <h3 className="font-brutal uppercase text-xl md:text-2xl leading-[1.1] tracking-[-0.015em] text-ink-50 break-words hyphens-auto">
                 {p.title}
               </h3>
               <p className="mt-3 font-plex text-sm leading-relaxed text-ink-300">
