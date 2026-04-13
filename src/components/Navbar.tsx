@@ -8,8 +8,19 @@ const links = [
   { label: 'Services', href: '#services' },
   { label: 'Stack', href: '#stack' },
   { label: 'Process', href: '#process' },
-  { label: 'Blog', to: '/blog' },
 ];
+
+const LOGO_URL = 'https://i.postimg.cc/cK79ds0J/Whats-App-Image-2025-05-21-at-9-23-13-PM.png';
+const logoMaskStyle: React.CSSProperties = {
+  WebkitMaskImage: `url(${LOGO_URL})`,
+  maskImage: `url(${LOGO_URL})`,
+  WebkitMaskRepeat: 'no-repeat',
+  maskRepeat: 'no-repeat',
+  WebkitMaskPosition: 'center',
+  maskPosition: 'center',
+  WebkitMaskSize: 'contain',
+  maskSize: 'contain',
+};
 
 const Navbar: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -31,10 +42,12 @@ const Navbar: React.FC = () => {
       }`}
     >
       <div className="mx-auto max-w-7xl px-6 md:px-8 h-16 md:h-20 flex items-center justify-between">
-        <RouterLink to="/" className="flex items-center gap-2.5 group" aria-label="EnnBi home">
-          <span className="relative inline-block w-2 h-2 bg-mint-500 rounded-full">
-            <span className="absolute inset-0 rounded-full bg-mint-500 animate-ping opacity-60" />
-          </span>
+        <RouterLink to="/" className="flex items-center gap-3 group" aria-label="EnnBi home">
+          <span
+            aria-hidden
+            className="block w-9 h-9 bg-mint-500 transition-colors duration-base ease-brutal group-hover:bg-mint-300"
+            style={logoMaskStyle}
+          />
           <span className="font-brutal uppercase text-ink-50 text-[1.1rem] tracking-[-0.01em]">
             ENNBI
           </span>

@@ -21,10 +21,21 @@ const nav = {
     'Legacy Modernization',
   ],
   elsewhere: [
-    { label: 'Blog', to: '/blog' },
     { label: 'Employee Corner', to: '/login' },
     { label: 'Technologies', to: '/technologies' },
   ],
+};
+
+const LOGO_URL = 'https://i.postimg.cc/cK79ds0J/Whats-App-Image-2025-05-21-at-9-23-13-PM.png';
+const logoMaskStyle: React.CSSProperties = {
+  WebkitMaskImage: `url(${LOGO_URL})`,
+  maskImage: `url(${LOGO_URL})`,
+  WebkitMaskRepeat: 'no-repeat',
+  maskRepeat: 'no-repeat',
+  WebkitMaskPosition: 'center',
+  maskPosition: 'center',
+  WebkitMaskSize: 'contain',
+  maskSize: 'contain',
 };
 
 const Footer: React.FC = () => {
@@ -36,8 +47,12 @@ const Footer: React.FC = () => {
         {/* Top */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-12">
           <div className="col-span-2">
-            <div className="flex items-center gap-2.5 mb-5">
-              <span className="w-2 h-2 bg-mint-500 rounded-full" aria-hidden />
+            <div className="flex items-center gap-3 mb-5">
+              <span
+                aria-hidden
+                className="block w-10 h-10 bg-mint-500"
+                style={logoMaskStyle}
+              />
               <span className="font-brutal uppercase text-ink-50 text-xl tracking-[-0.01em]">
                 ENNBI
               </span>
