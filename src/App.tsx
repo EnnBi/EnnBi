@@ -9,6 +9,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Services from './components/Services';
+import Technologies from './components/Technologies';
 import WhyChooseUs from './components/WhyChooseUs';
 import Portfolio from './components/Portfolio';
 import Testimonials from './components/Testimonials';
@@ -17,6 +18,8 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Blog from './components/Blog';
 import Login from './components/Login';
+import TechnologyDetailsPage from './components/TechnologyDetailsPage';
+import SoftwareDevelopmentServicesPage from './components/SoftwareDevelopmentServicesPage';
 import './index.css';
 
 const Home = () => (
@@ -25,6 +28,7 @@ const Home = () => (
     <Hero />
     <About />
     <Services />
+    <Technologies />
     <WhyChooseUs />
     <Portfolio />
     <Testimonials />
@@ -73,6 +77,11 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/technologies" element={<TechnologyDetailsPage />} />
+        <Route
+          path="/software-development-services"
+          element={<SoftwareDevelopmentServicesPage />}
+        />
       </Routes>
     </Router>
   );
