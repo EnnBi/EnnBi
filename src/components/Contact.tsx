@@ -69,7 +69,8 @@ const Contact: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <Input label="Name" name="name" placeholder="Your name" required />
               <Input label="Email" name="email" type="email" placeholder="you@company.com" required />
-              <Input label="Company" name="company" placeholder="(optional)" className="md:col-span-2" />
+              <Input label="Phone" name="phone" type="tel" placeholder="+91 7889 449921" inputMode="tel" autoComplete="tel" />
+              <Input label="Company" name="company" placeholder="(optional)" />
               <div className="md:col-span-2">
                 <Textarea
                   label="Project brief"
