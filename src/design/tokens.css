@@ -1,0 +1,48 @@
+/* ============================================================================
+ * Design tokens — single source of truth for colors, radii, shadows, motion.
+ * Tailwind utility classes (ink-*, mint-*) reference these CSS variables in
+ * tailwind.config.js, so swapping a token here updates the whole app.
+ * ============================================================================ */
+
+:root {
+  /* Neutrals (ink) ---------------------------------------------------------- */
+  --ink-950: #050505;
+  --ink-900: #0a0a0a;
+  --ink-800: #141414;
+  --ink-700: #1f1f1f;
+  --ink-600: #2e2e2e;
+  --ink-500: #525252;
+  --ink-400: #737373;
+  --ink-300: #a3a3a3;
+  --ink-200: #d4d4d4;
+  --ink-100: #ededed;
+  --ink-50:  #fafafa;
+
+  /* Accent (mint teal) ----------------------------------------------------- */
+  --accent-900: #042f2e;
+  --accent-700: #0f766e;
+  --accent-500: #14b8a6;
+  --accent-300: #5eead4;
+  --accent-100: #ccfbf1;
+
+  /* Semantic --------------------------------------------------------------- */
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger:  #ef4444;
+  --info:    #14b8a6;
+
+  /* Radius ---------------------------------------------------------------- */
+  --radius-none: 0;
+  --radius-xs:   2px;
+
+  /* Shadows (brutalist hybrid — reserved for primary CTAs) ---------------- */
+  --shadow-offset:        6px 6px 0 0 var(--accent-500);
+  --shadow-offset-hover:  3px 3px 0 0 var(--accent-500);
+
+  /* Motion ---------------------------------------------------------------- */
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+  --duration-slow: 350ms;
+  --ease-out:       cubic-bezier(0.2, 0, 0, 1);
+  --ease-in-out:    cubic-bezier(0.4, 0, 0.2, 1);
+}
