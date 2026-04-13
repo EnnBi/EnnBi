@@ -1,8 +1,15 @@
 import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import { Section } from './ui';
 import { technologyColumns } from '../data/technologies';
 
 const columnTitles = ['Emerging Tech', 'Languages & Engineering', 'Platforms'];
+
+const toSlug = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
 
 const Stack: React.FC = () => {
   return (
@@ -25,17 +32,30 @@ const Stack: React.FC = () => {
             </div>
             <ul className="space-y-2.5">
               {column.map((item) => (
-                <li
-                  key={item}
-                  className="flex items-baseline gap-3 font-plex text-[0.9375rem] text-ink-200"
-                >
-                  <span className="text-mint-500 font-mono text-xs">—</span>
-                  <span>{item}</span>
+                <li key={item}>
+                  <RouterLink
+                    to={`/technologies#${toSlug(item)}`}
+                    className="group flex items-baseline gap-3 font-plex text-[0.9375rem] text-ink-200 hover:text-mint-500 transition-colors duration-base ease-brutal"
+                  >
+                    <span className="text-mint-500 font-mono text-xs transition-transform duration-base ease-brutal group-hover:translate-x-0.5">
+                      —
+                    </span>
+                    <span>{item}</span>
+                  </RouterLink>
                 </li>
               ))}
             </ul>
           </div>
         ))}
+      </div>
+
+      <div className="mt-12 pt-8 border-t border-ink-700">
+        <RouterLink
+          to="/technologies"
+          className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-300 hover:text-mint-500 transition-colors"
+        >
+          See all technologies in detail →
+        </RouterLink>
       </div>
     </Section>
   );
