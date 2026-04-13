@@ -1,0 +1,27 @@
+/* ============================================================================
+ * Base layer overrides — applied inside Tailwind's @layer base for correct
+ * cascade ordering. Loaded by src/index.css.
+ * ============================================================================ */
+
+@layer base {
+  /* Unified focus ring for keyboard users */
+  :focus-visible {
+    outline: 2px solid var(--accent-500);
+    outline-offset: 2px;
+  }
+
+  /* Selection color */
+  ::selection {
+    background: var(--accent-500);
+    color: var(--ink-950);
+  }
+
+  /* Brutalist default: no border-radius on form controls unless the
+     component opts in via radius-xs */
+  input,
+  textarea,
+  select,
+  button {
+    border-radius: var(--radius-xs);
+  }
+}

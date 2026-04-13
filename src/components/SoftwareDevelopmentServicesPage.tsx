@@ -1,246 +1,126 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+import Navbar from './Navbar';
+import Footer from './Footer';
+import { Section, Card, Button, Eyebrow } from './ui';
 
 type DetailItem = {
   name: string;
   description: string;
+  deliverables?: string[];
 };
 
 const services: DetailItem[] = [
   {
-    name: 'Software consulting',
+    name: 'Software Consulting',
     description:
-      'We assess business goals, current systems, and technical constraints to define a practical software strategy, architecture, and delivery roadmap.',
+      'Pragmatic reviews of your current stack, delivery process, and architecture. We come back with a short, prioritized roadmap — not a 200-page deck.',
+    deliverables: ['Architecture review', 'Prioritized roadmap', 'Team & hiring guidance'],
   },
   {
-    name: 'Custom software development',
+    name: 'Custom Software Development',
     description:
-      'We design and build tailored applications that match your workflows, business logic, compliance needs, and user expectations.',
+      'Greenfield platforms, internal tools, and SaaS products engineered to fit your operating model. Delivered as weekly releases, not big-bang launches.',
+    deliverables: ['Product & platform engineering', 'Design system', 'Weekly staging releases'],
   },
   {
-    name: 'Software development outsourcing',
+    name: 'Software Development Outsourcing',
     description:
-      'We take end-to-end ownership of software delivery, from planning and development to QA and release, as an external engineering partner.',
+      'End-to-end delivery of projects you want shipped without adding permanent headcount. Scoped contracts, fixed milestones, transparent burn.',
+    deliverables: ['Scope & milestone plan', 'Dedicated delivery lead', 'Hand-off documentation'],
   },
   {
-    name: 'Software product development',
+    name: 'Software Product Development',
     description:
-      'We help shape product vision, build MVPs, and scale feature-rich platforms with strong focus on usability, quality, and performance.',
+      'From zero-to-one to scale. We build v1 with an eye on the product roadmap, so the second release doesn&apos;t require a rewrite.',
+    deliverables: ['v1 MVP', 'Roadmap-friendly architecture', 'Analytics & feedback loops'],
   },
   {
-    name: 'Team augmentation',
+    name: 'Team Augmentation',
     description:
-      'We extend your in-house team with specialists who integrate with your processes, tools, and sprint cadence to accelerate delivery.',
+      'Senior engineers plug into your Slack, your standups, your sprints. Bring capacity without the ramp-up tax of new hires.',
+    deliverables: ['Vetted senior engineers', 'Embedded in your process', 'Flexible ramp up/down'],
   },
   {
-    name: 'Cloud application development',
+    name: 'Cloud Application Development',
     description:
-      'We build cloud-native apps with scalable infrastructure, secure integrations, resilient deployments, and observable operations.',
+      'Cloud-native from day one on AWS or Azure. CI/CD, infrastructure as code, observability, and cost guardrails baked in.',
+    deliverables: ['IaC (Terraform / Bicep)', 'CI/CD pipelines', 'Observability & SLOs'],
   },
   {
-    name: 'Legacy software modernization',
+    name: 'Legacy Software Modernization',
     description:
-      'We modernize outdated systems by refactoring codebases, migrating platforms, and improving security, maintainability, and speed.',
+      'Pragmatic migrations — we don&apos;t rip and replace unless we have to. Strangler-fig patterns, data migration planning, zero-downtime cutover.',
+    deliverables: ['Migration plan', 'Risk & downtime budget', 'Parallel-run strategy'],
   },
   {
-    name: 'Post-launch support',
+    name: 'Post-launch Support',
     description:
-      'We provide ongoing maintenance, enhancements, performance tuning, bug fixing, and monitoring to keep applications reliable in production.',
-  },
-];
-
-const industries: DetailItem[] = [
-  {
-    name: 'Healthcare',
-    description:
-      'Healthcare solutions focused on patient engagement, secure health data management, telemedicine, and workflow automation for providers.',
-  },
-  {
-    name: 'Banking',
-    description:
-      'Banking platforms for digital onboarding, core process automation, secure transactions, and compliance-ready customer experiences.',
-  },
-  {
-    name: 'Insurance',
-    description:
-      'Insurance software for policy lifecycle management, claims automation, fraud controls, and customer self-service portals.',
-  },
-  {
-    name: 'Lending',
-    description:
-      'Lending systems that streamline application processing, risk scoring, underwriting, and repayment management.',
-  },
-  {
-    name: 'Payments',
-    description:
-      'Payment solutions for gateway integrations, transaction orchestration, reconciliation, and high-availability financial operations.',
-  },
-  {
-    name: 'Investment',
-    description:
-      'Investment platforms delivering portfolio tracking, reporting, advisory workflows, and analytics-driven decision support.',
-  },
-  {
-    name: 'Real estate',
-    description:
-      'Real estate tools for listing management, lead conversion, property operations, and digital client engagement.',
-  },
-  {
-    name: 'Retail',
-    description:
-      'Retail systems for omnichannel commerce, inventory synchronization, loyalty programs, and personalized shopping journeys.',
-  },
-  {
-    name: 'Manufacturing',
-    description:
-      'Manufacturing software that improves production planning, quality management, traceability, and shop-floor visibility.',
-  },
-  {
-    name: 'Logistics and Transportation',
-    description:
-      'Logistics solutions for routing, fleet operations, shipment tracking, warehouse coordination, and real-time status control.',
-  },
-  {
-    name: 'Oil and Gas',
-    description:
-      'Oil and gas applications supporting field operations, asset monitoring, safety compliance, and predictive maintenance.',
-  },
-  {
-    name: 'Energy and utilities',
-    description:
-      'Energy and utility platforms for metering, outage response, network monitoring, and customer service digitization.',
-  },
-  {
-    name: 'Professional services',
-    description:
-      'Professional services software for project delivery, utilization tracking, billing automation, and knowledge management.',
-  },
-  {
-    name: 'Telecoms',
-    description:
-      'Telecom solutions for subscriber lifecycle management, service provisioning, network operations, and support automation.',
-  },
-  {
-    name: 'Engineering and construction',
-    description:
-      'Engineering and construction tools for planning, site collaboration, progress tracking, and document control.',
-  },
-  {
-    name: 'Travel and hospitality',
-    description:
-      'Travel and hospitality systems for booking, guest engagement, loyalty, operations optimization, and partner integrations.',
+      'Retained engineering hours, on-call rotations, and quarterly platform reviews. Keeps what you built healthy — and easy to extend.',
+    deliverables: ['Hours bank or retainer', 'On-call coverage', 'Quarterly platform review'],
   },
 ];
 
 const SoftwareDevelopmentServicesPage: React.FC = () => {
-  const [selectedService, setSelectedService] = useState<DetailItem>(services[0]);
-  const [selectedIndustry, setSelectedIndustry] = useState<DetailItem>(industries[0]);
-
   return (
-    <section className="min-h-screen bg-gray-950 py-20">
-      <div className="container mx-auto px-4">
-        <div className="flex justify-end">
-          <Link
-            to="/"
-            className="text-blue-300 underline underline-offset-4 transition hover:text-blue-100"
-          >
-            Back to Home
-          </Link>
-        </div>
-
-        <motion.div
-          className="mx-auto mt-6 max-w-5xl"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45 }}
-        >
-          <h1 className="section-heading text-4xl md:text-6xl text-center">
-            Software Development Services
-          </h1>
-          <p className="mt-5 text-center text-gray-300 text-base md:text-lg leading-relaxed">
-            A software development company with 36 years of business excellence, we engineer
-            reliable, scalable, and secure software solutions for any OS, browser, and device.
-            We combine deep industry expertise with the latest IT advancements to deliver custom
-            solutions and products that match user needs and behavior.
+    <div className="min-h-screen bg-ink-950 text-ink-200 font-plex flex flex-col">
+      <Navbar />
+      <main className="flex-1 pt-24">
+        <Section eyebrow="// CH.02 · SOFTWARE DEVELOPMENT SERVICES" title="Everything we offer." containerSize="lg">
+          <p className="font-plex text-lg text-ink-300 max-w-2xl">
+            A detailed breakdown of the engagements we take on. If your project doesn&apos;t
+            fit neatly into one of these, it probably maps to two — we&apos;ll help you
+            decide which.
           </p>
-        </motion.div>
+        </Section>
 
-        <div className="mt-12 grid gap-8 md:grid-cols-2">
-          <motion.article
-            className="glass-morph rounded-2xl border border-white/10 p-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.45 }}
-          >
-            <h2 className="text-2xl font-semibold text-white">Service Scope</h2>
-            <ul className="mt-4 space-y-2">
-              {services.map((item) => (
-                <li
-                  key={item.name}
-                >
-                  <button
-                    type="button"
-                    onClick={() => setSelectedService(item)}
-                    className={`w-full rounded-lg border px-3 py-2 text-left text-sm transition ${
-                      selectedService.name === item.name
-                        ? 'border-blue-300/70 bg-blue-500/20 text-blue-100'
-                        : 'border-white/10 bg-white/5 text-gray-200 hover:border-white/30 hover:bg-white/10'
-                    }`}
-                  >
-                    {item.name}
-                  </button>
-                </li>
-              ))}
-            </ul>
+        <Section variant="bordered" containerSize="lg" className="pt-0 md:pt-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {services.map((s, i) => (
+              <Card key={s.name} variant="outlined" padding="lg" className="flex flex-col gap-4">
+                <div className="flex items-start justify-between">
+                  <span className="font-brutal uppercase text-[2rem] leading-none text-mint-500">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                </div>
+                <h2 className="font-brutal uppercase text-[1.625rem] leading-[1.1] tracking-[-0.015em] text-ink-50">
+                  {s.name}
+                </h2>
+                <p className="font-plex text-[0.9375rem] leading-[1.55] text-ink-300">
+                  {s.description}
+                </p>
+                {s.deliverables ? (
+                  <div className="mt-auto pt-4 border-t border-ink-700">
+                    <Eyebrow className="mb-3">// DELIVERABLES</Eyebrow>
+                    <ul className="space-y-1.5">
+                      {s.deliverables.map((d) => (
+                        <li key={d} className="flex items-start gap-3 font-plex text-sm text-ink-200">
+                          <span className="text-mint-500 mt-0.5">→</span>
+                          <span>{d}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+              </Card>
+            ))}
+          </div>
 
-            <div className="mt-5 rounded-xl border border-blue-300/30 bg-blue-500/10 p-4">
-              <p className="text-sm font-semibold text-blue-100">{selectedService.name}</p>
-              <p className="mt-2 text-sm leading-relaxed text-gray-200">
-                {selectedService.description}
-              </p>
-            </div>
-          </motion.article>
-
-          <motion.article
-            className="glass-morph rounded-2xl border border-white/10 p-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.45, delay: 0.1 }}
-          >
-            <h2 className="text-2xl font-semibold text-white">Industry Expertise</h2>
-            <ul className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
-              {industries.map((item) => (
-                <li
-                  key={item.name}
-                >
-                  <button
-                    type="button"
-                    onClick={() => setSelectedIndustry(item)}
-                    className={`h-full w-full rounded-lg border px-3 py-2 text-left text-sm transition ${
-                      selectedIndustry.name === item.name
-                        ? 'border-blue-300/70 bg-blue-500/20 text-blue-100'
-                        : 'border-white/10 bg-white/5 text-gray-200 hover:border-white/30 hover:bg-white/10'
-                    }`}
-                  >
-                    {item.name}
-                  </button>
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-5 rounded-xl border border-blue-300/30 bg-blue-500/10 p-4">
-              <p className="text-sm font-semibold text-blue-100">{selectedIndustry.name}</p>
-              <p className="mt-2 text-sm leading-relaxed text-gray-200">
-                {selectedIndustry.description}
-              </p>
-            </div>
-          </motion.article>
-        </div>
-      </div>
-    </section>
+          <div className="mt-16 pt-8 border-t border-ink-700 flex flex-wrap gap-6 items-center justify-between">
+            <RouterLink
+              to="/"
+              className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-300 hover:text-mint-500 transition-colors"
+            >
+              ← Back home
+            </RouterLink>
+            <Button as="a" href="/#contact" variant="primary" size="md">
+              Let's Chat
+            </Button>
+          </div>
+        </Section>
+      </main>
+      <Footer />
+    </div>
   );
 };
 

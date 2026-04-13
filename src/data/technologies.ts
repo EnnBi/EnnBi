@@ -19,7 +19,6 @@ export const technologyColumns: string[][] = [
     'Software as a Service (SaaS)',
   ],
   [
-    'Developers for Hire',
     '.NET',
     'Java',
     'Python',
@@ -145,15 +144,6 @@ export const technologyDetails: TechnologyDetail[] = [
     examples: [
       'B2B workflow platforms with role-based access and billing tiers.',
       'Self-service admin consoles for tenant onboarding and management.',
-    ],
-  },
-  {
-    name: 'Developers for Hire',
-    description:
-      'Dedicated developer engagements provide flexible engineering capacity aligned with your roadmap and delivery goals.',
-    examples: [
-      'A full-stack team extension for a fast-moving startup.',
-      'Specialist engineers for legacy modernization projects.',
     ],
   },
   {
