@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Suspense, useEffect, lazy } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -21,6 +21,8 @@ import Login from './components/Login';
 import TechnologyDetailsPage from './components/TechnologyDetailsPage';
 import SoftwareDevelopmentServicesPage from './components/SoftwareDevelopmentServicesPage';
 import './index.css';
+
+const Styleguide = lazy(() => import('./components/Styleguide'));
 
 const Home = () => (
   <>
@@ -81,6 +83,14 @@ function App() {
         <Route
           path="/software-development-services"
           element={<SoftwareDevelopmentServicesPage />}
+        />
+        <Route
+          path="/styleguide"
+          element={
+            <Suspense fallback={<div className="min-h-screen bg-ink-950" />}>
+              <Styleguide />
+            </Suspense>
+          }
         />
       </Routes>
     </Router>
