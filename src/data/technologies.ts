@@ -34,15 +34,10 @@ export const technologyColumns: string[][] = [
     'Microsoft',
     'Azure',
     'Power Apps',
-    'Dynamics 365',
     'SharePoint and Microsoft 365',
     'Power BI',
     'Amazon Web Services',
-    'Adobe Commerce',
     'Shopify',
-    'ServiceNow',
-    'Salesforce',
-    'Pimcore',
   ],
 ];
 
@@ -264,15 +259,6 @@ export const technologyDetails: TechnologyDetail[] = [
     ],
   },
   {
-    name: 'Dynamics 365',
-    description:
-      'Dynamics 365 unifies CRM and ERP capabilities to improve sales, finance, and service operations.',
-    examples: [
-      'Lead-to-cash automation for sales teams.',
-      'Customer service case management with SLA tracking.',
-    ],
-  },
-  {
     name: 'SharePoint and Microsoft 365',
     description:
       'SharePoint and Microsoft 365 support secure collaboration, document management, and intranet portals.',
@@ -300,48 +286,12 @@ export const technologyDetails: TechnologyDetail[] = [
     ],
   },
   {
-    name: 'Adobe Commerce',
-    description:
-      'Adobe Commerce powers enterprise e-commerce with advanced catalog, promotions, and B2B buying experiences.',
-    examples: [
-      'Multi-storefront deployments with shared product catalogs.',
-      'Custom checkout and inventory synchronization workflows.',
-    ],
-  },
-  {
     name: 'Shopify',
     description:
       'Shopify enables fast, secure storefront delivery with app integrations, payment support, and scalable operations.',
     examples: [
       'D2C stores with subscriptions, bundles, and loyalty programs.',
       'Shopify Plus implementations with ERP and fulfillment integration.',
-    ],
-  },
-  {
-    name: 'ServiceNow',
-    description:
-      'ServiceNow digitizes IT and business workflows with service catalog, automation, and incident management.',
-    examples: [
-      'ITSM setup with SLA tracking and escalation policies.',
-      'Employee onboarding flows across HR and IT systems.',
-    ],
-  },
-  {
-    name: 'Salesforce',
-    description:
-      'Salesforce centralizes customer data and drives sales, service, and marketing automation at scale.',
-    examples: [
-      'Lead scoring and opportunity tracking pipelines.',
-      'Customer service automation with omnichannel case handling.',
-    ],
-  },
-  {
-    name: 'Pimcore',
-    description:
-      'Pimcore combines PIM, DAM, and content management for consistent multi-channel product experiences.',
-    examples: [
-      'Centralized product data syndication across marketplaces.',
-      'Digital asset governance for campaigns and catalogs.',
     ],
   },
 ];

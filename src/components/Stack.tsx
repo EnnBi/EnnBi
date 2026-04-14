@@ -15,8 +15,8 @@ const Stack: React.FC = () => {
   return (
     <Section id="stack" eyebrow="// CH.03 · STACK" title="The tools we reach for." variant="bordered">
       <p className="font-plex text-lg text-ink-300 max-w-2xl mb-12 md:mb-16">
-        We match the stack to the problem, not the fashion. Across 30+ engagements we&apos;ve
-        shipped in every column below.
+        We match the stack to the problem, not the fashion. Across our engagements we&apos;ve
+        shipped production work in every column below.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">

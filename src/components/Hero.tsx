@@ -3,9 +3,8 @@ import { Button, Eyebrow } from './ui';
 
 const stats = [
   { value: '2022', label: 'Founded' },
-  { value: '30+',  label: 'Projects shipped' },
-  { value: '12',   label: 'Industries' },
-  { value: '∞',    label: 'Timezones served' },
+  { value: '8',    label: 'Shipped projects' },
+  { value: '6',    label: 'Industries' },
 ];
 
 const Hero: React.FC = () => {
@@ -65,7 +64,7 @@ const Hero: React.FC = () => {
 
         {/* Stat strip */}
         <div className="border-t border-ink-700 pt-8 pb-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12">
+          <div className="grid grid-cols-3 gap-6 md:gap-12">
             {stats.map((s) => (
               <div key={s.label} className="flex flex-col gap-1">
                 <span className="font-brutal uppercase text-[2.5rem] md:text-[3rem] leading-[0.95] text-ink-50">

@@ -51,44 +51,44 @@ export const whyChooseUs = [
 export const projects: ProjectType[] = [
   {
     id: 1,
-    title: "FinTech Platform",
-    description: "A comprehensive financial technology platform that revolutionized payment processing for a leading financial institution.",
-    image: "https://images.pexels.com/photos/7054528/pexels-photo-7054528.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    tags: ["FinTech", "Cloud", "AI"]
+    title: "Mosque Accounts Platform",
+    description: "Account management software for mosque committees — tracks day-to-day collections (zakat, sadaqah, general donations), running expenses, and dedicated fund drives, with auto-generated receipts and monthly statements for committee review.",
+    image: "",
+    tags: ["Accounting", "Web App", "Non-profit", "Reports"]
   },
   {
     id: 2,
     title: "Healthcare Management System",
-    description: "An integrated healthcare management solution that streamlined patient care and administrative processes.",
-    image: "https://images.pexels.com/photos/3938022/pexels-photo-3938022.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    description: "Patient-facing booking and records portal for a multi-specialty clinic — connects front-desk operations with consultant calendars, lab uploads, and follow-up reminders.",
+    image: "",
     tags: ["Healthcare", "Web App", "Mobile"]
   },
   {
     id: 3,
     title: "E-Commerce Transformation",
-    description: "A complete digital transformation for a retail chain, including e-commerce platform and inventory management.",
-    image: "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    description: "D2C storefront and inventory platform for a Kashmiri craft retailer, replacing a fragmented marketplace setup with a self-managed Shopify storefront and a centralized product catalog.",
+    image: "",
     tags: ["E-Commerce", "Mobile", "Cloud"]
   },
   {
     id: 4,
     title: "Smart Restaurant System",
-    description: "An innovative food ordering solution featuring self-service kiosks, mobile ordering, and kitchen display systems for streamlined restaurant operations.",
-    image: "https://images.pexels.com/photos/4199524/pexels-photo-4199524.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    description: "POS, kitchen display, and self-service kiosk software for a multi-outlet F&B operator. Real-time order status across stations and unified daily reporting.",
+    image: "",
     tags: ["POS", "Kiosk", "Mobile Ordering", "Real-time"]
   },
   {
     id: 5,
     title: "AI-Powered Customer Service",
-    description: "An intelligent customer service platform using natural language processing and machine learning to provide 24/7 automated support with human-like interactions.",
-    image: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    description: "First-line LLM agent for a fast-growing logistics operator — handles tracking queries, parcel rebookings, and refund initiation across web chat and WhatsApp, with human escalation.",
+    image: "",
     tags: ["AI", "NLP", "Machine Learning", "Customer Service"]
   },
   {
     id: 6,
     title: "Predictive Analytics Dashboard",
-    description: "A sophisticated analytics platform using AI to predict market trends, customer behavior, and business metrics with interactive visualizations.",
-    image: "https://images.pexels.com/photos/669610/pexels-photo-669610.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    description: "Sales-forecasting and customer-cohort dashboard for a pharma distributor, replacing scattered Excel models with a single Power BI workspace fed by their CRM and ERP.",
+    image: "",
     tags: ["AI", "Analytics", "Data Visualization", "Predictive Modeling"]
   }
 ];
@@ -99,20 +99,23 @@ export const testimonials: TestimonialType[] = [
     name: "Mr Abid",
     position: "Business Owner",
     company: "Heritage Craft.",
-    quote: "EnnBi Softwares delivered beyond our expectations. Their expertise in cloud solutions has transformed our operations and improved efficiency by 40%.",
+    quote: "",
+    image: "",
   },
   {
     id: 2,
     name: "Adnan",
-    position: " Director",
+    position: "Director",
     company: "Logisco Courier Service",
-    quote: "The mobile application developed by EnnBi has received outstanding feedback from our customers and significantly improved our user engagement metrics.",
+    quote: "",
+    image: "",
   },
   {
     id: 3,
     name: "Kamran Lone",
     position: "MD",
     company: "M Studio",
-    quote: "Working with EnnBi Softwares was a game-changer for our business. Their AI-driven solution has helped us increase sales by 35% in just six months.",
+    quote: "",
+    image: "",
   }
 ];

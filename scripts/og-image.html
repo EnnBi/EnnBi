@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1200px;
+    height: 630px;
+    background: #050505;
+    color: #fafafa;
+    font-family: 'IBM Plex Mono', monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .grid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.07;
+    background-image:
+      linear-gradient(#a3a3a3 1px, transparent 1px),
+      linear-gradient(to right, #a3a3a3 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .accent-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: #14b8a6;
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    padding: 80px 80px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .logo {
+    width: 64px;
+    height: 64px;
+    background: #14b8a6;
+    -webkit-mask-image: url('https://i.postimg.cc/cK79ds0J/Whats-App-Image-2025-05-21-at-9-23-13-PM.png');
+    mask-image: url('https://i.postimg.cc/cK79ds0J/Whats-App-Image-2025-05-21-at-9-23-13-PM.png');
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+  }
+
+  .brand-name {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 42px;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: #14b8a6;
+  }
+
+  .headline {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 96px;
+    line-height: 0.92;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: #fafafa;
+  }
+
+  .headline .highlight {
+    color: #050505;
+    background: #14b8a6;
+    padding: 0 12px;
+  }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #737373;
+  }
+</style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="content">
+    <div class="brand">
+      <div class="logo"></div>
+      <span class="brand-name">ENNBI</span>
+    </div>
+    <div class="headline">
+      CUSTOM<br>SOFTWARE.<br><span class="highlight">SHIPPED.</span>
+    </div>
+    <div class="eyebrow">// Engineering studio · Srinagar, India → Worldwide</div>
+  </div>
+  <div class="accent-bar"></div>
+</body>
+</html>
