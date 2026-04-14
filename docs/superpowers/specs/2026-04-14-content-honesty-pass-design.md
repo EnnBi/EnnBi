@@ -75,8 +75,9 @@ Schema.org JSON-LD currently has `"telephone": "+91-7006016082"`. Change to `"+9
 Generate a 1200×630 brutalist Open Graph image:
 - Background: ink-950 (#050505)
 - Grid texture (matching Hero)
-- "ENNBI" in Archivo Black, mint teal (#14b8a6)
-- "CUSTOM SOFTWARE. SHIPPED." in ink-50 (#fafafa)
+- EnnBi logo (from postimg URL, masked in mint #14b8a6) at left
+- "ENNBI" in Archivo Black, mint teal (#14b8a6) beside logo
+- "CUSTOM SOFTWARE. SHIPPED." in ink-50 (#fafafa) below
 - Subtle mint accent bar at bottom
 
 Approach: write an HTML template at 1200×630, render via headless browser (Puppeteer or Playwright), save as `public/og-image.jpg`. If no headless browser is available, provide the HTML for manual screenshot.
