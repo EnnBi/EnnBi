@@ -19,6 +19,7 @@ import Footer from './components/Footer';
 import Login from './components/Login';
 import TechnologyDetailsPage from './components/TechnologyDetailsPage';
 import SoftwareDevelopmentServicesPage from './components/SoftwareDevelopmentServicesPage';
+import PrivacyPolicyPage from './components/PrivacyPolicyPage';
 import './index.css';
 
 const Styleguide = lazy(() => import('./components/Styleguide'));
@@ -123,6 +124,7 @@ function App() {
           path="/software-development-services"
           element={<SoftwareDevelopmentServicesPage />}
         />
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route
           path="/styleguide"
           element={

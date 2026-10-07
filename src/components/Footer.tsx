@@ -23,6 +23,7 @@ const nav = {
   elsewhere: [
     { label: 'Employee Corner', to: '/login' },
     { label: 'Technologies', to: '/technologies' },
+    { label: 'Privacy Policy', to: '/privacy-policy' },
   ],
 };
 

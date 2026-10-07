@@ -31,6 +31,9 @@ jobs:
     - name: Build
       run: npm run build
 
+    - name: SPA fallback for direct links (e.g. /privacy-policy)
+      run: cp dist/index.html dist/404.html
+
     - name: Setup Pages
       uses: actions/configure-pages@v4
       with:
